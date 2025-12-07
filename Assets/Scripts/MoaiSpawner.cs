@@ -12,17 +12,12 @@ public class MoaiSpawner : MonoBehaviour
     private void OnEnable()
     {
         BasketLogic.OnGoodThrow += SpawnMoai;
+        SpawnMoai();
     }
 
     private void OnDisable()
     {
         BasketLogic.OnGoodThrow -= SpawnMoai;
-    }
-
-
-    void Start()
-    {
-        SpawnMoai();
     }
 
     public void SpawnMoai()

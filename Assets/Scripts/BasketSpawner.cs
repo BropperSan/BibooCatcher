@@ -14,7 +14,7 @@ public class BasketSpawner : MonoBehaviour
         basketRadius = basket.GetComponentInChildren<SphereCollider>().radius;
     }
 
-    void Start()
+    private void OnEnable()
     {
         if (MRUK.Instance != null)
         {
