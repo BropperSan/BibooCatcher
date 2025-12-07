@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 3233791625587212834}
   m_Layer: 0
   m_Name: Moai
-  m_TagString: Moai
+  m_TagString: MoaiOnSpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 7388175608561521637}
   m_Layer: 0
   m_Name: BaueFranco_GamepropSketchfab
-  m_TagString: Moai
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

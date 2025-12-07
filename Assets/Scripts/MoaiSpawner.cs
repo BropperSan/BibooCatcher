@@ -1,3 +1,4 @@
+using Meta.WitAi;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 
@@ -11,19 +12,32 @@ public class MoaiSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        BasketLogic.OnGoodThrow += SpawnMoai;
-        SpawnMoai();
+        GrabReleaseLogic.OnGoodThrow += SpawnMoai;
+        GrabReleaseLogic.OnBadThrow += SpawnMoai;
+        SpawnMoai(moai);
     }
 
     private void OnDisable()
     {
-        BasketLogic.OnGoodThrow -= SpawnMoai;
+        GrabReleaseLogic.OnGoodThrow -= SpawnMoai;
+        GrabReleaseLogic.OnBadThrow -= SpawnMoai;
     }
 
-    public void SpawnMoai()
+    public void SpawnMoai(GameObject i)
     {
-        Debug.Log("MOAI SPAWN");
-        GameObject _currMoai = Instantiate(moai, Vector3.zero, new Quaternion(0, 0, 0, 0), gameObject.transform);
-        _currMoai.transform.localPosition = new Vector3(0, -0.099f, 0.208f);
+        if (GameObject.FindGameObjectWithTag("MoaiOnSpawn") == null)
+        {
+            GameObject _currMoai = Instantiate(moai, Vector3.zero, new Quaternion(0, 0, 0, 0), gameObject.transform);
+            _currMoai.transform.localPosition = new Vector3(0, -0.099f, 0.208f);
+        }
+    }
+
+    public void DeleteMoai()
+    {
+        GameObject moaiOnSpawn = GameObject.FindGameObjectWithTag("MoaiOnSpawn");
+        if (moaiOnSpawn != null)
+        {
+            moaiOnSpawn.DestroySafely();
+        }
     }
 }

@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
     private AudioSource _sfxSource;
     private AudioSource _musicSource;
+
+    [SerializeField] private Slider slider;
 
     private AudioClip _boomClip;
     private AudioClip _musicClip;
@@ -21,19 +24,25 @@ public class AudioManager : MonoBehaviour
         _musicClip = Resources.Load<AudioClip>("Audio/Music");
         
     }
+
+    private void Update()
+    {
+        _musicSource.volume = slider.value;
+        _sfxSource.volume = slider.value;
+    }
     private void OnEnable()
     {
-        BasketLogic.OnGoodThrow += PlayGoodSound;
-        BasketLogic.OnGoodThrow += PlayBadSound;
+        GrabReleaseLogic.OnGoodThrow += PlayGoodSound;
+        GrabReleaseLogic.OnBadThrow += PlayBadSound;
     }
 
     private void OnDisable()
     {
-        BasketLogic.OnGoodThrow -= PlayGoodSound;
-        BasketLogic.OnGoodThrow -= PlayBadSound;
+        GrabReleaseLogic.OnGoodThrow -= PlayGoodSound;
+        GrabReleaseLogic.OnBadThrow -= PlayBadSound;
     }
 
-    void PlayGoodSound()
+    void PlayGoodSound(GameObject i)
     {
         if (_boomClip != null)
         {
@@ -41,7 +50,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    void PlayBadSound()
+    void PlayBadSound(GameObject i)
     {
         if (_boomClip != null)
         {
@@ -60,4 +69,9 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void StopMusic()
+    {
+        _musicSource.Stop();
+        _musicSource.clip = null;
+    }
 }
