@@ -1,4 +1,5 @@
 using Meta.WitAi;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class Score : MonoBehaviour
     [SerializeField] private GameObject _canvas;
     [SerializeField] private TMP_Text _sc;
     [SerializeField] private TMP_Text _mc;
+    public static event Action OnShowScore;
 
     private void OnEnable()
     {
@@ -58,6 +60,7 @@ public class Score : MonoBehaviour
         {
             moai.DestroySafely();
         }
+        OnShowScore?.Invoke();
         _canvas.SetActive(true);
         _sc.text = "Score: " + _score.ToString();
         _mc.text = "Max Combo: " + _maxCombo.ToString();

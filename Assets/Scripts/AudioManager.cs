@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     private AudioClip _boomClip;
     private AudioClip _musicClip;
     private AudioClip _hehehehaClip;
+    private AudioClip _moaiClip;
     private void Awake()
     {
         _musicSource = gameObject.AddComponent<AudioSource>();
@@ -21,6 +22,7 @@ public class AudioManager : MonoBehaviour
 
         _boomClip = Resources.Load<AudioClip>("Audio/VineBoom");
         _hehehehaClip = Resources.Load<AudioClip>("Audio/Heheheha");
+        _moaiClip = Resources.Load<AudioClip>("Audio/MoaiSound");
         _musicClip = Resources.Load<AudioClip>("Audio/Music");
         
     }
@@ -34,12 +36,14 @@ public class AudioManager : MonoBehaviour
     {
         GrabReleaseLogic.OnGoodThrow += PlayGoodSound;
         GrabReleaseLogic.OnBadThrow += PlayBadSound;
+        Score.OnShowScore += PlayMoai;
     }
 
     private void OnDisable()
     {
         GrabReleaseLogic.OnGoodThrow -= PlayGoodSound;
         GrabReleaseLogic.OnBadThrow -= PlayBadSound;
+        Score.OnShowScore -= PlayMoai;
     }
 
     void PlayGoodSound(GameObject i)
@@ -73,5 +77,13 @@ public class AudioManager : MonoBehaviour
     {
         _musicSource.Stop();
         _musicSource.clip = null;
+    }
+
+    public void PlayMoai()
+    {
+        if (_moaiClip != null)
+        {
+            _sfxSource.PlayOneShot(_moaiClip);
+        }
     }
 }
