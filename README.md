@@ -1,0 +1,23 @@
+# 🪨 AR Stone Toss
+
+**AR Stone Toss** is a small augmented reality game developed in Unity.
+
+The player places a virtual basket in the real world and tries to throw stones into it using AR interactions.
+
+## 🎮 Features
+
+* Augmented Reality gameplay
+* Object placement in the real environment
+* Physics-based stone throwing
+* Basket hit detection
+* Simple score-based gameplay
+
+## 🛠️ Technologies
+
+* Unity
+* C#
+* AR
+
+## 🔄 Gameplay
+
+Place the basket → throw stones → hit the target → score points.
